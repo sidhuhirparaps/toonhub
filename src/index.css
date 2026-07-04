@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.35;
+}
+
+/* Floating Animations */
+@keyframes float-badge-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes float-badge-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(14px) rotate(-2deg);
+  }
+}
+
+@keyframes float-badge-3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+.animate-float-1 {
+  animation: float-badge-1 5s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-badge-2 6s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-badge-3 5.5s ease-in-out infinite;
+}
+
+/* Glassmorphism details */
+.glass-badge {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-badge:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.08);
+}
+
