@@ -17,7 +17,7 @@ const PERSONAS = [
       { name: 'TypeScript' },
       { name: 'Next.js' }
     ],
-    src: '/preset-sites/toonhub/webdev_jolly.png?v=3',
+    src: 'webdev_jolly.png?v=3',
   },
   {
     title: 'VIDEO EDITING',
@@ -51,7 +51,7 @@ const PERSONAS = [
       { name: 'Zapier' },
       { name: 'OpenAI' }
     ],
-    src: 'https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/3.4df853b4.png',
+    src: 'Automation.png',
   },
   {
     title: 'CMS & E-COMMERCE',
@@ -68,7 +68,11 @@ const PERSONAS = [
       { name: 'WordPress' },
       { name: 'PHP' }
     ],
-    src: 'https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/4.4457fbce.png',
+    src: 'ecommerce.png',
+    centerScale: 1.68,
+    centerBottom: '-14%',
+    mobileCenterScale: 1.25,
+    mobileCenterBottom: '15%',
   },
 ] as const;
 
@@ -85,7 +89,7 @@ function getRole(imageIndex: number, activeIndex: number): Role {
   return 'back';
 }
 
-function getItemStyle(role: Role, isMobile: boolean): CSSProperties {
+function getItemStyle(role: Role, isMobile: boolean, persona?: typeof PERSONAS[number]): CSSProperties {
   const base: CSSProperties = {
     position: 'absolute',
     aspectRatio: '0.6 / 1',
@@ -94,17 +98,31 @@ function getItemStyle(role: Role, isMobile: boolean): CSSProperties {
     willChange: 'transform, filter, opacity',
   };
 
+  // Determine scale and bottom positioning, allowing custom overrides per persona
+  let centerScale = isMobile ? 1.25 : 1.68;
+  let bottom = isMobile ? '22%' : '0';
+
+  if (persona && role === 'center') {
+    if (isMobile) {
+      centerScale = (persona as any).mobileCenterScale ?? 1.25;
+      bottom = (persona as any).mobileCenterBottom ?? '22%';
+    } else {
+      centerScale = (persona as any).centerScale ?? 1.68;
+      bottom = (persona as any).centerBottom ?? '0';
+    }
+  }
+
   switch (role) {
     case 'center':
       return {
         ...base,
-        transform: `translateX(-50%) scale(${isMobile ? 1.25 : 1.68})`,
+        transform: `translateX(-50%) scale(${centerScale})`,
         filter: 'none',
         opacity: 1,
         zIndex: 20,
         left: '50%',
         height: isMobile ? '60%' : '92%',
-        bottom: isMobile ? '22%' : 0,
+        bottom,
       };
     case 'left':
       return {
@@ -419,7 +437,7 @@ export default function App() {
           {PERSONAS.map((p, index) => {
             const role = getRole(index, activeIndex);
             return (
-              <div key={p.title} style={getItemStyle(role, isMobile)}>
+              <div key={p.title} style={getItemStyle(role, isMobile, p)}>
                 <img
                   src={p.src}
                   alt={p.title}
