@@ -48,7 +48,7 @@ const PERSONAS = [
       { name: 'After Effects' },
       { name: 'Blender' }
     ],
-    src: 'edit_jolly.png',
+    src: 'edit_jolly.png?v=2',
     centerScale: 1.68,
     centerBottom: '-11%',
     mobileCenterScale: 1.25,
