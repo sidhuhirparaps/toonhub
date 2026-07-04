@@ -1,2 +1,9 @@
 node_modules
 dist
+
+# Ignore root-level build outputs (retaining versions in public/)
+/assets/
+/Automation.png
+/ecommerce.png
+/edit_jolly.png
+/webdev_jolly.png
