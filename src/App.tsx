@@ -109,15 +109,15 @@ function getItemStyle(role: Role, isMobile: boolean, persona?: typeof PERSONAS[n
   };
 
   // Determine scale and bottom positioning, allowing custom overrides per persona
-  let centerScale = isMobile ? 1.25 : 1.68;
+  let centerScale = isMobile ? 1.3 : 1.75;
   let bottom = isMobile ? '22%' : '0';
 
   if (persona && role === 'center') {
     if (isMobile) {
-      centerScale = (persona as any).mobileCenterScale ?? 1.25;
+      centerScale = (persona as any).mobileCenterScale ?? 1.3;
       bottom = (persona as any).mobileCenterBottom ?? '22%';
     } else {
-      centerScale = (persona as any).centerScale ?? 1.68;
+      centerScale = (persona as any).centerScale ?? 1.75;
       bottom = (persona as any).centerBottom ?? '0';
     }
   }
@@ -131,7 +131,7 @@ function getItemStyle(role: Role, isMobile: boolean, persona?: typeof PERSONAS[n
         opacity: 1,
         zIndex: 20,
         left: '50%',
-        height: isMobile ? '60%' : '92%',
+        height: isMobile ? '64%' : '94%',
         bottom,
       };
     case 'left':
@@ -142,7 +142,7 @@ function getItemStyle(role: Role, isMobile: boolean, persona?: typeof PERSONAS[n
         opacity: 0.85,
         zIndex: 10,
         left: isMobile ? '20%' : '30%',
-        height: isMobile ? '16%' : '28%',
+        height: isMobile ? '18%' : '30%',
         bottom: isMobile ? '32%' : '12%',
       };
     case 'right':
@@ -153,7 +153,7 @@ function getItemStyle(role: Role, isMobile: boolean, persona?: typeof PERSONAS[n
         opacity: 0.85,
         zIndex: 10,
         left: isMobile ? '80%' : '70%',
-        height: isMobile ? '16%' : '28%',
+        height: isMobile ? '18%' : '30%',
         bottom: isMobile ? '32%' : '12%',
       };
     case 'back':
@@ -164,7 +164,7 @@ function getItemStyle(role: Role, isMobile: boolean, persona?: typeof PERSONAS[n
         opacity: 1,
         zIndex: 5,
         left: '50%',
-        height: isMobile ? '13%' : '22%',
+        height: isMobile ? '15%' : '24%',
         bottom: isMobile ? '32%' : '12%',
       };
   }
@@ -320,14 +320,14 @@ export default function App() {
 
   return (
     <div
-      className="relative w-full overflow-hidden"
+      className="relative w-full h-[100dvh] overflow-hidden"
       style={{
         backgroundColor: active.bg,
         fontFamily: "'Inter', sans-serif",
         transition: `background-color ${ANIM_MS}ms ${EASE}`,
       }}
     >
-      <div className="relative w-full overflow-hidden" style={{ height: '100vh' }}>
+      <div className="relative w-full h-full overflow-hidden">
         {/* Grain overlay */}
         <div
           className="pointer-events-none absolute inset-0"
@@ -355,7 +355,7 @@ export default function App() {
             className="whitespace-nowrap uppercase transition-all duration-700 select-none text-center"
             style={{
               fontFamily: "'Anton', sans-serif",
-              fontSize: 'clamp(60px, 17.5vw, 240px)',
+              fontSize: 'clamp(50px, 15vw, 220px)',
               fontWeight: 900,
               lineHeight: 0.9,
               letterSpacing: '0.03em',
@@ -367,20 +367,15 @@ export default function App() {
           </span>
         </div>
 
-        {/* Brand label */}
+        {/* Brand logo: Skillhub */}
         <div
-          className="absolute left-4 top-6 z-[60] flex items-center gap-2.5 select-none sm:left-8"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          className="absolute left-4 top-4 z-[60] flex items-center select-none sm:left-8 sm:top-6"
+          style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 text-white font-extrabold text-sm tracking-tighter border border-white/20 shadow-md">
-            S
-          </div>
-          <div className="flex flex-col justify-center leading-none">
-            <span className="text-[9px] font-semibold tracking-[0.25em] text-white/50 uppercase mb-0.5">
-              CREATIVE
-            </span>
-            <span className="text-xs font-black tracking-widest text-white uppercase">
-              SKILL<span className="text-white/60 font-medium">HUB</span>
+          <div className="flex items-center text-xl sm:text-2xl font-black tracking-tighter leading-none drop-shadow-md">
+            <span className="text-white mr-1.5 font-black tracking-tight">Skill</span>
+            <span className="bg-[#F79B26] text-black px-2 py-1 rounded-md sm:rounded-lg font-black text-[0.88em] leading-none inline-flex items-center justify-center">
+              hub
             </span>
           </div>
         </div>
@@ -391,8 +386,8 @@ export default function App() {
           <div
             className="absolute animate-float-1 glass-badge flex items-center gap-3.5 px-6 py-3.5 rounded-2xl text-white font-semibold text-sm tracking-wider transition-all duration-700"
             style={{
-              left: 'calc(50% - 20vw)',
-              top: '26%',
+              left: 'calc(50% - 22vw)',
+              top: '24%',
               opacity: isAnimating ? 0 : 1,
               transform: `scale(${isAnimating ? 0.8 : 1})`,
               boxShadow: `0 8px 32px 0 rgba(0, 0, 0, 0.2), 0 0 15px ${active.panel}44`
@@ -405,8 +400,8 @@ export default function App() {
           <div
             className="absolute animate-float-2 glass-badge flex items-center gap-3.5 px-6 py-3.5 rounded-2xl text-white font-semibold text-sm tracking-wider transition-all duration-700"
             style={{
-              right: 'calc(50% - 20vw)',
-              top: '40%',
+              right: 'calc(50% - 22vw)',
+              top: '38%',
               opacity: isAnimating ? 0 : 1,
               transform: `scale(${isAnimating ? 0.8 : 1})`,
               boxShadow: `0 8px 32px 0 rgba(0, 0, 0, 0.2), 0 0 15px ${active.panel}44`
@@ -419,7 +414,7 @@ export default function App() {
           <div
             className="absolute animate-float-3 glass-badge flex items-center gap-3.5 px-6 py-3.5 rounded-2xl text-white font-semibold text-sm tracking-wider transition-all duration-700"
             style={{
-              left: 'calc(50% - 18vw)',
+              left: 'calc(50% - 20vw)',
               top: '56%',
               opacity: isAnimating ? 0 : 1,
               transform: `scale(${isAnimating ? 0.8 : 1})`,
@@ -488,7 +483,7 @@ export default function App() {
         </div>
 
         {/* Bottom Section (Copy & Navigation + HIRE ME Button) */}
-        <div className="absolute bottom-6 left-4 right-4 sm:bottom-16 sm:left-12 sm:right-12 z-[60] flex flex-col md:flex-row items-center md:items-end justify-between gap-6 transition-all duration-500">
+        <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 z-[60] flex flex-col md:flex-row items-center md:items-end justify-between gap-4 sm:gap-6 transition-all duration-500">
 
           {/* Left section: copy + nav */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left" style={{ maxWidth: 480 }}>
@@ -520,24 +515,24 @@ export default function App() {
               {active.desc}
             </p>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3.5 items-center">
               <button
                 type="button"
                 aria-label="Previous figurine (Left Arrow key)"
                 title="Previous (← Arrow)"
                 onClick={() => navigate('prev')}
-                className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white text-white bg-transparent transition-[transform,background-color] duration-150 hover:scale-[1.08] hover:bg-white/10 sm:h-16 sm:w-16"
+                className="group relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur-md text-white transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.35)]"
               >
-                <ArrowLeft size={26} strokeWidth={2.25} />
+                <ArrowLeft size={22} strokeWidth={2.5} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
               </button>
               <button
                 type="button"
                 aria-label="Next figurine (Right Arrow key)"
                 title="Next (→ Arrow)"
                 onClick={() => navigate('next')}
-                className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white text-white bg-transparent transition-[transform,background-color] duration-150 hover:scale-[1.08] hover:bg-white/10 sm:h-16 sm:w-16"
+                className="group relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur-md text-white transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.35)]"
               >
-                <ArrowRight size={26} strokeWidth={2.25} />
+                <ArrowRight size={22} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </button>
             </div>
           </div>

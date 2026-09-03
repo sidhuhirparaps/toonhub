@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <!-- Solid black background -->
+  <rect width="240" height="160" rx="32" fill="#000000" />
+  
+  <!-- Skillhub Wordmark -->
+  <g transform="translate(16, 50)">
+    <!-- "Skill" in bold white -->
+    <text x="0" y="44" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="52" letter-spacing="-1.5">Skill</text>
+    
+    <!-- Orange pill box -->
+    <rect x="110" y="2" width="98" height="56" rx="12" fill="#F79B26" />
+    
+    <!-- "hub" in bold black inside orange pill -->
+    <text x="159" y="44" text-anchor="middle" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="52" letter-spacing="-1.5">hub</text>
+  </g>
+</svg>

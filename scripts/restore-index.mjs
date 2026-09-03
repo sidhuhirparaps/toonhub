@@ -14,6 +14,7 @@ const filesToClean = [
   'ecommerce.png',
   'edit_jolly.png',
   'webdev_jolly.png',
+  'favicon.svg',
 ];
 
 for (const file of filesToClean) {
