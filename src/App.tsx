@@ -17,14 +17,12 @@ import {
 
 const PERSONAS = [
   {
+    subtitle: 'WEB & INTERACTIVE EXPERIENCES',
     title: 'WEB DEVELOPMENT',
-    subtitle: 'FULL STACK MASCOT',
     bg: '#1E3A8A', // Deep cobalt blue
     panel: '#3B82F6', // Lighter blue
     textColor: '#EFF6FF',
-    slogan: 'BUILD.',
-    sleeveText: 'NEXT.JS // THREE.JS // GSAP',
-    desc: 'Crafting blazing-fast interactive web applications with React, TypeScript, and modern design systems. Focused on flawless performance and premium styling.',
+    desc: 'Architecting high-performance web applications, interactive 3D experiences, and scalable design systems with React, TypeScript, and Next.js.',
     ghostText: 'WEB DEV',
     logos: [
       { name: 'React' },
@@ -34,14 +32,12 @@ const PERSONAS = [
     src: 'webdev_jolly.png?v=3',
   },
   {
+    subtitle: 'MOTION & POST-PRODUCTION',
     title: 'VIDEO EDITING',
-    subtitle: 'MOTION DESIGN MASCOT',
     bg: '#5B21B6', // Deep purple
     panel: '#8B5CF6', // Violet
     textColor: '#F5F3FF',
-    slogan: 'CUT THE NOISE',
-    sleeveText: '60FPS // RENDER',
-    desc: 'Designing high-retention, cinematic-style video content with custom transitions, audio engineering, and engaging motion graphics that hook viewers.',
+    desc: 'Crafting high-retention visual stories, seamless motion transitions, pacing, and cinematic audio design across Premiere Pro, After Effects, and Blender.',
     ghostText: 'MOTION',
     logos: [
       { name: 'Premiere Pro' },
@@ -55,14 +51,12 @@ const PERSONAS = [
     mobileCenterBottom: '14%',
   },
   {
+    subtitle: 'SYSTEMS & AUTOMATION',
     title: 'WORKFLOW AUTOMATION',
-    subtitle: 'API & INTEGRATIONS MASCOT',
     bg: '#064E3B', // Deep emerald
     panel: '#10B981', // Mint/emerald
     textColor: '#ECFDF5',
-    slogan: 'FLOW STATE',
-    sleeveText: 'CRON // ACTIVE',
-    desc: 'Connecting APIs, building automated scrapers, database syncs, and custom backend scripts to eliminate repetitive tasks and streamline workflows.',
+    desc: 'Engineering autonomous API workflows, web scrapers, webhook pipelines, and custom backend tools to eliminate manual bottlenecks.',
     ghostText: 'AUTOMATE',
     logos: [
       { name: 'Python' },
@@ -72,14 +66,12 @@ const PERSONAS = [
     src: 'Automation.png',
   },
   {
+    subtitle: 'COMMERCE & CMS PLATFORMS',
     title: 'CMS & E-COMMERCE',
-    subtitle: 'SHOPIFY & WORDPRESS MASCOT',
     bg: '#78350F', // Dark amber/brown
     panel: '#F59E0B', // Amber
     textColor: '#FEF3C7',
-    slogan: 'SCALE UP',
-    sleeveText: 'CMS // CONVERT',
-    desc: 'Developing high-converting, custom-tailored e-commerce stores and CMS websites with custom theme components, plugins, and speed optimization.',
+    desc: 'Building bespoke Shopify themes and scalable WordPress architectures engineered for checkout conversion and rapid page speeds.',
     ghostText: 'COMMERCE',
     logos: [
       { name: 'Shopify' },
@@ -279,6 +271,24 @@ export default function App() {
     [isAnimating],
   );
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigate('prev');
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigate('next');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [navigate]);
+
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     if (e.button !== 0) return; // Only trigger for main (left) click
     setPointerStart(e.clientX);
@@ -342,13 +352,13 @@ export default function App() {
           }}
         >
           <span
-            className="whitespace-nowrap uppercase transition-all duration-700"
+            className="whitespace-nowrap uppercase transition-all duration-700 select-none text-center"
             style={{
               fontFamily: "'Anton', sans-serif",
-              fontSize: 'clamp(90px, 24vw, 360px)',
+              fontSize: 'clamp(60px, 17.5vw, 240px)',
               fontWeight: 900,
               lineHeight: 0.9,
-              letterSpacing: '0.06em',
+              letterSpacing: '0.03em',
               color: 'transparent',
               WebkitTextStroke: '2px rgba(255, 255, 255, 0.16)',
             }}
@@ -360,7 +370,7 @@ export default function App() {
         {/* Brand label */}
         <div
           className="absolute left-4 top-6 z-[60] flex items-center gap-2.5 select-none sm:left-8"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 text-white font-extrabold text-sm tracking-tighter border border-white/20 shadow-md">
             S
@@ -482,31 +492,30 @@ export default function App() {
 
           {/* Left section: copy + nav */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left" style={{ maxWidth: 480 }}>
-            {/* Tagline showing user-slogan & details (Stats HUD - hidden on mobile/tablet) */}
-            <div className="mb-3 hidden md:flex flex-wrap gap-2 select-none">
-              <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded bg-white/10 text-white font-mono tracking-wider uppercase border border-white/10">
-                Chest: "{active.slogan}"
-              </span>
-              <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded bg-white/10 text-white font-mono tracking-wider uppercase border border-white/10">
-                Sleeve: {active.sleeveText}
-              </span>
-            </div>
-
-            <div className="mb-3 sm:mb-5">
-              <span className="block text-xs font-bold tracking-[0.26em] text-white/70 uppercase mb-0.5 sm:mb-1">
+            <div className="mb-2 sm:mb-3 flex items-center select-none">
+              <span
+                className="text-[11px] sm:text-xs font-semibold tracking-[0.24em] text-white/70 uppercase"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              >
                 {active.subtitle}
               </span>
-              <h2
-                className="text-3xl sm:text-6xl font-black uppercase text-white leading-[1.1] tracking-[0.03em] transition-all duration-500"
-                style={{ fontFamily: "'Anton', sans-serif" }}
-              >
-                {active.title}
-              </h2>
             </div>
 
+            <h2
+              className="text-3xl sm:text-6xl font-black uppercase text-white leading-[1.05] tracking-[0.02em] transition-all duration-500 mb-3 sm:mb-4"
+              style={{ fontFamily: "'Anton', sans-serif" }}
+            >
+              {active.title}
+            </h2>
+
             <p
-              className="mb-5 hidden text-xs text-white/95 sm:mb-7 sm:block sm:text-sm"
-              style={{ opacity: 0.9, lineHeight: 1.6, letterSpacing: '0.01em' }}
+              className="mb-5 hidden text-xs text-white/90 sm:mb-7 sm:block sm:text-sm max-w-[440px]"
+              style={{
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                opacity: 0.9,
+                lineHeight: 1.65,
+                letterSpacing: '0.01em',
+              }}
             >
               {active.desc}
             </p>
@@ -514,7 +523,8 @@ export default function App() {
             <div className="flex gap-3">
               <button
                 type="button"
-                aria-label="Previous figurine"
+                aria-label="Previous figurine (Left Arrow key)"
+                title="Previous (← Arrow)"
                 onClick={() => navigate('prev')}
                 className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white text-white bg-transparent transition-[transform,background-color] duration-150 hover:scale-[1.08] hover:bg-white/10 sm:h-16 sm:w-16"
               >
@@ -522,7 +532,8 @@ export default function App() {
               </button>
               <button
                 type="button"
-                aria-label="Next figurine"
+                aria-label="Next figurine (Right Arrow key)"
+                title="Next (→ Arrow)"
                 onClick={() => navigate('next')}
                 className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white text-white bg-transparent transition-[transform,background-color] duration-150 hover:scale-[1.08] hover:bg-white/10 sm:h-16 sm:w-16"
               >
@@ -538,6 +549,7 @@ export default function App() {
             rel="noopener noreferrer"
             className="group relative flex items-center gap-4 pl-7 pr-3 py-3 rounded-full border border-white/25 bg-white/10 backdrop-blur-md text-white font-bold uppercase tracking-widest transition-all duration-300 hover:bg-white hover:text-black hover:border-white select-none"
             style={{
+              fontFamily: "'Space Grotesk', sans-serif",
               fontSize: '13px',
               boxShadow: `0 8px 32px 0 rgba(0, 0, 0, 0.2)`
             }}
